@@ -15,13 +15,41 @@ namespace AP_Lab_04_5
 
             bool result;
 
-            double x, y;
+            int R;
 
+            double x, y;
+            
             Random rand = new Random();
 
+            // Спосіб 1.
+            Console.WriteLine("Метод 1.");
+            
+            for (int ii = 0; ii < 10; ii++)
+            {
+                Console.Write("Метод 1.\n" +
+                    "Введіть значення змінних \"x\", \"y\", \"R\" по черзі через крапку з комою: ");
+
+                string[] varArray = Console.ReadLine().Split(';', ',');
+
+                x = Double.Parse(varArray[0]);
+                y = Double.Parse(varArray[1]);
+                R = int.Parse(varArray[2]);
+
+                if (x >= -R && x <= R && y >= 0 && y <= R && (Math.Pow(x, 2) + Math.Pow(y, 2) <= Math.Pow(R, 2)))
+                    result = true;
+
+                else if (x > y && y > -R && y < 0)
+                    result = true;
+
+                else result = false;
+
+                Console.WriteLine(result ? "Попало!" : "Не попало!");
+            }
+
+            // Спосіб 2.
             Console.Write("Введіть значення змінної \"R\": ");
 
-            int R = int.Parse(Console.ReadLine());            
+            R = int.Parse(Console.ReadLine());            
 
             // Виведення "шапки" таблиці
             Console.WriteLine("+---------------+---------------+---------------+\n" +
@@ -29,7 +57,7 @@ namespace AP_Lab_04_5
                 "+---------------+---------------+---------------+");
 
             // Розрахунок значень та виведення основної частини таблиці
-            for (int ii = 0; ii < 10; ii++)
+            for (int jj = 0; jj < 10; jj++)
             {
                 x = rand.Next(-R, R) + rand.NextDouble();
                 y = rand.Next(-R, R) + rand.NextDouble();
